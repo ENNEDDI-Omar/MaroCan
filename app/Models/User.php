@@ -33,6 +33,22 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Role::class);
     }
 
+    public function hasRole(string $roleName): bool
+    {
+        return $this->roles->contains(function ($role) use ($roleName) {
+            return $role->name === $roleName;
+        });
+    }
+
+    public function assignRole(string $roleName): void
+    {
+        $role = Role::firstOrCreate(['name' => $roleName]);
+
+        if (!$this->roles->contains($role->id)) {
+            $this->roles()->attach($role->id);
+        }
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -52,4 +68,6 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
 }
