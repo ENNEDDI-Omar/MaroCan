@@ -52,7 +52,7 @@
                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M96 0V47L48 94H0V47L48 0H96Z" />
                 </svg>
-                EVENTO
+                MaroCan
             </a>
             <!-- Social icons -->
 
