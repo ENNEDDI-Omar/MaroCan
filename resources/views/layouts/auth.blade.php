@@ -3,6 +3,7 @@
 <head>
     <title>Laravel - laraveli.com</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    @vite('resources/css/app.css')
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
   

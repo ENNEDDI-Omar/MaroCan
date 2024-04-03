@@ -24,15 +24,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    
-Route::middleware("auth")->group(function(){
-   // Route pour l'inscription
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // // Route pour la connexion
  Route::get('/login', [LoginController::class, 'index'])->name('login.form');
- Route::post('/login', [LoginController::class, 'login'])->name('login');
+ Route::post('/login', [LoginController::class, 'login'])->name('login'); 
+
+Route::middleware("auth")->group(function(){
+   // Route pour l'inscription
+
 
 // // Route pour la déconnexion
  Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
