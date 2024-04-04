@@ -142,6 +142,22 @@
 <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
     @vite('resources/css/app.css')
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <!-- message.blade.php -->
+
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Success!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">{{ session('error') }}</span>
+            </div>
+        @endif
+
         <header class="mb-4 flex items-center justify-between py-4 md:py-8">
             <!-- logo - start -->
             <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
@@ -188,8 +204,7 @@
         <section
             class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-16 shadow-lg md:py-20 xl:py-48">
             <!-- image - start -->
-            <img src="{{asset('images/home2.jpg')}}"
-                loading="lazy" alt="Photo by Fakurian Design"
+            <img src="{{ asset('images/home2.jpg') }}" loading="lazy" alt="Photo by Fakurian Design"
                 class="absolute inset-0 h-full w-full object-cover object-center" />
             <!-- image - end -->
 
@@ -237,8 +252,7 @@
             <!-- image - start -->
             <a href="{{ route('register') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{asset('media/e2.jpg')}}"
-                    loading="lazy" alt="Photo by Minh Pham"
+                <img src="{{ asset('media/e2.jpg') }}" loading="lazy" alt="Photo by Minh Pham"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
@@ -252,8 +266,7 @@
             <!-- image - start -->
             <a href="{{ route('register') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{asset('media/spe3.jpg')}}"
-                    loading="lazy" alt="Photo by Magicle"
+                <img src="{{ asset('media/spe3.jpg') }}" loading="lazy" alt="Photo by Magicle"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
@@ -267,8 +280,7 @@
             <!-- image - start -->
             <a href="{{ route('register') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{asset('media/e1.jpg')}}"
-                    loading="lazy" alt="Photo by Martin Sanchez"
+                <img src="{{ asset('media/e1.jpg') }}" loading="lazy" alt="Photo by Martin Sanchez"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
@@ -282,8 +294,7 @@
             <!-- image - start -->
             <a href="{{ route('register') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{asset('media/geo1.jpg')}}"
-                    loading="lazy" alt="Photo by Lorenzo Herrera"
+                <img src="{{ asset('media/geo1.jpg') }}" loading="lazy" alt="Photo by Lorenzo Herrera"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
@@ -359,7 +370,7 @@
         <div class="mb-10 md:mb-16">
             <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Meet our Team</h2>
 
-            
+
         </div>
         <!-- text - end -->
 
