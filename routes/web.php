@@ -45,9 +45,13 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 // // Route pour l home
-Route::resource('home', HomeController::class); 
+
 });
 
+Route::resource('home', HomeController::class); 
+ 
+
+Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 
 
