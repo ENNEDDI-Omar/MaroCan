@@ -41,13 +41,15 @@ class User extends Authenticatable implements HasMedia
         });
     }
 
-    public function assignRole(string $roleName): void
+    public function assignRole(string $roleName): Role
     {
         $role = Role::firstOrCreate(['name' => $roleName]);
 
         if (!$this->roles->contains($role->id)) {
             $this->roles()->attach($role->id);
         }
+
+        return $role; 
     }
 
     /**
