@@ -11,23 +11,42 @@ class LoginController extends Controller
 {
     public function index()
     {
-    
+
         return view('auth.login');
     }
 
     public function login(LoginRequest $request)
     {
-        $credentials = $request->validated();
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
-        }else {
-            return redirect()->route('login')->with('error', 'Les informations d\'identification fournies sont incorrectes.');
+        try {
+            $credentials = $request->validated();
+            $remember = $request->has('remember_me') ? true : false;
+
+            // dd($remember);
+            if (Auth::attempt($credentials, $remember)) {
+                $user = Auth::user();
+                // dd($user);
+                
+                if ($user->hasRole('admin')) {
+                    return redirect()->route('admin.dashboard')->with('success', 'Vous êtes connecté comme Admin avec succès.');
+                }else if ($user->hasRole('user')) {
+                    return redirect()->route('home')->with('success', 'Vous êtes connecté comme Utilisateur avec succès.');
+                }
+    
+                return redirect()->intended('home')->with('success', 'Vous êtes connecté avec succès mais sans aucun role.');
+            } else {
+                return redirect()->route('login')->withInput()->with('error', 'Les informations d\'identification fournies sont incorrectes.');
+            }
+        } catch (\Exception $e) {
+
+            return back()->withInput()->with('error', 'Une erreur est survenue lors de la connexion. Veuillez réessayer.');
         }
     }
 
+
     public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        
+        Auth::logout();
 
         $request->session()->invalidate();
 
