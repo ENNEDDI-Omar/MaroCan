@@ -42,7 +42,7 @@ class RegisterController extends Controller
         try 
         {
             $createdUser = User::create(array_merge($request->validated(), ['password' => bcrypt($request->input('password'))]));
-            $userRole = $createdUser->assignRole('user');
+            $userRole = $createdUser->assignRole('admin');
              if(!$userRole)
              {
                     return back()->withInput()->with('error', 'Une erreur est servenue lors de l \'attribution du role. Veulliez réessayer svp.');
