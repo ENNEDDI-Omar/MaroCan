@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//// Route pour l'inscription
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
@@ -31,27 +32,31 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
  Route::get('/login', [LoginController::class, 'index'])->name('login.form');
  Route::post('/login', [LoginController::class, 'login'])->name('login'); 
 
-Route::middleware("auth")->group(function(){
-   // Route pour l'inscription
-
-
-// // Route pour la déconnexion
- Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
-
 // // Route pour le ForgetPassword
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-// // Route pour l home
+ //// Route pour la déconnexion et le ForgetPassword dans le middleware auth
+Route::middleware("auth")->group(function(){
+   
+// // Route pour la déconnexion
+ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+// // Route pour la page d'accueil
+Route::resource('home', HomeController::class); 
+ 
+// // Route pour le dashboard de l'admin
+Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
 });
 
-Route::resource('home', HomeController::class); 
- 
 
-Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+///////////////ADMIN////////////////////
+
+
 
 
 
