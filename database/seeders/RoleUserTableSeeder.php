@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,7 +14,11 @@ class RoleUserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::findOrFail(1)->roles()->sync(1);
-        User::findOrFail(2)->roles()->sync(2); 
+        $users = User::all();
+        $roles = Role::whereIn('name', ['user', 'journalist'])->pluck('id')->toArray();
+
+        $users->each(function ($user) use ($roles) {
+            $user->roles()->attach($roles[array_rand($roles)]);
+        }); 
     }
 }

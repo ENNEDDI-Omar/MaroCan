@@ -22,7 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             RoleTableSeeder::class,
-            RoleUserTableSeeder::class
+            RoleUserTableSeeder::class,
+            JournalistTableSeeder::class,
+            MediaPlatformTableSeeder::class,
+            AccreditationBadgeTableSeeder::class,
+            ArticleTableSeeder::class,
+            TagTableSeeder::class,
         ]);
     }
 }

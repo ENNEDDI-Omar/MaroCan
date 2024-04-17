@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AccreditationBadgeController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\MediaPlatformController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -44,11 +50,31 @@ Route::middleware("auth")->group(function(){
 // // Route pour la déconnexion
  Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
+ // // Route pour banner l'utilisateur
+ Route::patch('users/{user}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
+
+ //// Route pour les crud des utilisateurs
+Route::resource('users', UserController::class);
+
 // // Route pour la page d'accueil
 Route::resource('home', HomeController::class); 
  
 // // Route pour le dashboard de l'admin
-Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+// // Route pour les Articles
+Route::resource('articles', ArticleController::class);
+
+// //  Route pour les Tags
+Route::resource('tags', TagController::class);
+
+// //Route pour les Accreditations
+Route::resource('accreditations', AccreditationBadgeController::class);
+
+// // Route pour les MediaPlatforms
+Route::resource('media-platforms', MediaPlatformController::class);
+
+
 
 });
 
