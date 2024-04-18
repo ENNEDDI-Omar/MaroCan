@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class ArticleStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +22,13 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', Password::defaults()],
-            'phone' => ['nullable', 'string', 'max:20'],
-            'profil' => ['nullable', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'], 
+            'title' => ['required', 'string','max:255', 'unique:articles, title'],
+            'content' => ['required', 'string', 'max:65535'],
+            'status' => ['required', 'in:draft,published,pending'],
+            'published_at' => ['nullable', 'date', 'date_format:Y-m-d'],
+            'journalist_id' => ['required', 'exists:journalists, id'],
+            'tags' => 'required|array',
+            'tags.*' => 'exists:tags,id'
         ];
     }
 }

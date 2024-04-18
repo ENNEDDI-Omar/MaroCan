@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class TagUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +22,7 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', Password::defaults()],
-            'phone' => ['nullable', 'string', 'max:20'],
-            'profil' => ['nullable', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'], 
+            'name'=> ['sometimes', 'string', 'max:255', 'unique:tags,name,' . $this->tag->id]
         ];
     }
 }
