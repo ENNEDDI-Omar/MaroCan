@@ -41,15 +41,27 @@ class User extends Authenticatable implements HasMedia
         });
     }
 
-    public function assignRole(string $roleName): Role
-    {
+
+    public function assignRole(array $roleNames): array
+{
+    $roles = [];
+
+    foreach ($roleNames as $roleName) {
         $role = Role::firstOrCreate(['name' => $roleName]);
 
         if (!$this->roles->contains($role->id)) {
             $this->roles()->attach($role->id);
+            $roles[] = $role;
         }
+    }
 
-        return $role; 
+    return $roles;
+}
+
+
+    public function journalist()
+    {
+        return $this->hasOne(Journalist::class);
     }
 
     /**
