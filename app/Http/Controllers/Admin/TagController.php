@@ -23,11 +23,11 @@ class TagController extends Controller
     public function store(TagStoreRequest $request)
     {
         try {
-            $data = $request->validated();
-            $tag = Tag::create($data);
+            
+            $tag = Tag::create($request->validated());
             return redirect()->route('admin.tags.index')->with('success', 'Tag créé avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la création du tag');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la création du tag. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ class TagController extends Controller
             $tag->update($data);
             return redirect()->route('admin.tags.index')->with('success', 'Tag modifié avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification du tag');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification du tag. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
@@ -58,7 +58,7 @@ class TagController extends Controller
             $tag->delete();
             return redirect()->route('admin.tags.index')->with('success', 'Tag supprimé avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la suppression du tag');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la suppression du tag. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 

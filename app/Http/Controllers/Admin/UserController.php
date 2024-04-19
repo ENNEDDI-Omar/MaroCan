@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index()
-    {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
-    }
+{
+    
+    $users = User::with('roles')->paginate(6); 
+    return view('admin.users.index', compact('users'));
+}
+
 
     public function create()
     {
@@ -40,7 +42,7 @@ class UserController extends Controller
             }
             return redirect()->route('admin.users.index')->with('success', 'Utilisateur créé avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la création de l\'utilisateur');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la création de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
@@ -49,8 +51,9 @@ class UserController extends Controller
         return view('admin.users.show', compact('user'));
     }
 
-    public function edit(User $user, Role $roles)
+    public function edit(User $user)
     {
+        $roles = Role::all();
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
@@ -74,7 +77,7 @@ class UserController extends Controller
 
             return redirect()->route('admin.users.index')->with('success', 'Utilisateur modifié avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification de l\'utilisateur');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
@@ -84,7 +87,7 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la suppression de l\'utilisateur');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la suppression de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
@@ -94,7 +97,7 @@ class UserController extends Controller
             $user->update(['status' => 'banned']);
             return redirect()->route('admin.users.index')->with('success', 'Utilisateur banni avec succès');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la tentative de bannissement de l\'utilisateur');
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la tentative de bannissement de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 }
