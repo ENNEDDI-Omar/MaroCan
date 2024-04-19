@@ -192,7 +192,7 @@
                 <label for="roles" class="block text-gray-700 text-sm font-bold mb-2">Rôles:</label>
                 <select multiple name="roles[]" id="roles" class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
                 @error('roles')
