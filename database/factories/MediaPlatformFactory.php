@@ -16,7 +16,8 @@ class MediaPlatformFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        return 
+        [
             'name' => $this->faker->company,
             'mediaPlatform_code' => $this->faker->randomNumber(4),
             'type' => $this->faker->randomElement(['newspaper', 'radio', 'television', 'digital_media']),
