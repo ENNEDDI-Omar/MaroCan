@@ -26,9 +26,9 @@ class LoginController extends Controller
                 $user = Auth::user();
                 // dd($user);
                 
-                if ($user->hasRole('admin')) {
-                    return redirect()->route('admin.dashboard')->with('success', 'Vous êtes connecté comme Admin avec succès.');
-                }else if ($user->hasRole('user')) {
+                if ($user->hasRole(['admin'])) {
+                    return redirect()->route('admin.')->with('success', 'Vous êtes connecté comme Admin avec succès.');
+                }else if ($user->hasRole(['user'])) {
                     return redirect()->route('home')->with('success', 'Vous êtes connecté comme Utilisateur avec succès.');
                 }
     
@@ -37,8 +37,7 @@ class LoginController extends Controller
                 return redirect()->route('login')->withInput()->with('error', 'Les informations d\'identification fournies sont incorrectes.');
             }
         } catch (\Exception $e) {
-
-            return back()->withInput()->with('error', 'Une erreur est survenue lors de la connexion. Veuillez réessayer.');
+            return back()->withInput()->with('error', 'Une erreur est survenue lors de la connexion. Veuillez réessayer. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 

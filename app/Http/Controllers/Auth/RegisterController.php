@@ -31,18 +31,12 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        // $createdUser = User::create(array_merge($request->validated(), ['password' => bcrypt($request->input('password'))]));
-        // $userRole = $createdUser->assignRole('user');
-
-        // if ($userRole) {
-        //     $createdUser->roles()->attach($userRole);
-        // }
-        // return redirect()->route('login')->with('success', 'Votre compte a été créé avec succès. Connectez-vous maintenant.');
 
         try 
         {
             $createdUser = User::create(array_merge($request->validated(), ['password' => bcrypt($request->input('password'))]));
-            $userRole = $createdUser->assignRole('admin');
+            $userRole = $createdUser->assignRole(['admin']);
+             
              if(!$userRole)
              {
                     return back()->withInput()->with('error', 'Une erreur est servenue lors de l \'attribution du role. Veulliez réessayer svp.');
@@ -50,7 +44,7 @@ class RegisterController extends Controller
             return redirect()->route('login.form')->with('success', 'Votre compte a été créé avec succès. Connectez-vous maintenant.');
         }catch(\Exception $e)
         {
-            return back()->withInput()->with('error', 'Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.');
+            return back()->withInput()->with('error', 'Une erreur est survenue lors de la création de votre compte. Veuillez réessayer. Détails de l\'erreur : ' . $e->getMessage());
         }
     }
 
