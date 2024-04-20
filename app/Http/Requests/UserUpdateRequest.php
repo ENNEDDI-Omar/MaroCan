@@ -24,12 +24,14 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profil' => ['sometimes', 'string', 'max:255', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'name' => ['sometimes', 'alpha', 'max:20'],
+            'profil' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'],
+            'name' => ['sometimes', 'string', 'max:20'],
             'email' => ['sometimes', 'string', 'email', Rule::unique('users', 'email')->ignore($this->user)],
-            'password' => ['sometimes', 'string', 'confirmed', Password::defaults()],
+            'password' => ['sometimes', 'string', 'password', Password::defaults()],
             'phone' => ['nullable', 'string', 'max:20'],
-            'roles' => ['sometimes', 'array'],
+            'status' => ['required', 'in:accepted,banned'], 
+            'roles' => ['required', 'array'], 
+            'roles.*' => ['exists:roles,id'],
         ];
     }
 }

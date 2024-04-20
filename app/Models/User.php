@@ -34,29 +34,35 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Role::class);
     }
 
-    public function hasRole(string $roleName): bool
+
+    public function hasRole(array $roleNames): bool
     {
-        return $this->roles->contains(function ($role) use ($roleName) {
-            return $role->name === $roleName;
-        });
+        foreach ($roleNames as $roleName) {
+            if ($this->roles()->where('name', $roleName)->exists()) {
+                return true;
+            }
+        }
+        return false;
     }
+
+
 
 
     public function assignRole(array $roleNames): array
-{
-    $roles = [];
+    {
+        $roles = [];
 
-    foreach ($roleNames as $roleName) {
-        $role = Role::firstOrCreate(['name' => $roleName]);
+        foreach ($roleNames as $roleName) {
+            $role = Role::firstOrCreate(['name' => $roleName]);
 
-        if (!$this->roles->contains($role->id)) {
-            $this->roles()->attach($role->id);
-            $roles[] = $role;
+            if (!$this->roles->contains($role->id)) {
+                $this->roles()->attach($role->id);
+                $roles[] = $role;
+            }
         }
-    }
 
-    return $roles;
-}
+        return $roles;
+    }
 
 
     public function journalist()
@@ -83,6 +89,4 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
 }
