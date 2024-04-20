@@ -1,6 +1,6 @@
 @extends('layouts.dash')
 @section('content')
-    <div class="mx-20 mt-20 w-full p-4 shadow-md rounded-lg border-t-2 border-teal-400">
+    <div class="mx-18 mt-20 w-full p-4 shadow-md rounded-lg border-t-2 border-teal-400">
         <div class="flex justify-between pb-4">
             <p class="font-bold text-xl">Media Platforms:</p>
             <button onclick="showCreateModal()"
@@ -13,14 +13,17 @@
             @foreach ($mediaPlatforms as $media)
                 <div
                     class="flex border items-center rounded-md cursor-pointer transition duration-500 shadow-sm hover:shadow-md hover:shadow-teal-400">
+
                     <div class="w-16 p-2 shrink-0">
                         <img src="{{ $media->getFirstMediaUrl('platforms') }}" alt="media-logo" class="h-12 w-12">
                     </div>
-                    <div class="p-2">
-                        <p class="font-semibold text-lg">{{ $media->name }}</p>
-                        <span class="text-gray-600">{{ $media->type }}</span>
-                    </div>
-
+                    <a href="#"
+                        onclick="showMediaModal('{{ $media->getFirstMediaUrl('platforms') }}', '{{ $media->name }}', '{{ $media->mediaPlatform_code }}', '{{ $media->type }}')">
+                        <div class="p-2">
+                            <p class="font-semibold text-lg">{{ $media->name }}</p>
+                            <span class="text-gray-600">{{ $media->type }}</span>
+                        </div>
+                    </a>
                     <div class="flex items-center space-x-4 text-sm ml-auto">
                         <a href="#"
                             onclick="showEditModal('{{ $media->getFirstMediaUrl('platforms') }}', '{{ $media->name }}', '{{ $media->mediaPlatform_code }}', '{{ $media->type }}')"
@@ -49,6 +52,18 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div
+            class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+
+            <span class="col-span-2"></span>
+            <!-- Pagination -->
+            <span class="flex lg:justify-self-center col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                <nav aria-label="Table navigation">
+                    {{ $mediaPlatforms->links() }}
+                </nav>
+            </span>
         </div>
 
 
@@ -108,10 +123,15 @@
                                             <span class="text-red-500 text-xs">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="flex items-center justify-end">
                                         <button type="submit"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create</button>
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create
+                                        </button>
+
+                                        <button onclick="hideCreateModal()"
+                                            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancel</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -121,26 +141,6 @@
             </div>
         </div>
 
-        <script>
-            function showCreateModal() {
-                document.getElementById("createModal").classList.remove("hidden");
-            }
-
-
-            function showEditModal(logoUrl, name, mediaPlatform_code, type) {
-                
-                document.getElementById("editModal").classList.remove("hidden");
-                document.getElementById("logo_preview").src = logoUrl; 
-                document.getElementById("edit_logo_url").value = logoUrl;
-                document.getElementById("edit_name").value = name;
-                document.getElementById("edit_mediaPlatform_code").value = mediaPlatform_code;
-                document.getElementById("edit_type").value = type;
-                 
-            }
-        </script>
-
-        
-
         <!---modal pour la modification --->
         <div id="editModal" class="hidden fixed inset-0 z-10 overflow-y-auto">
             <div class="flex items-center justify-center min-h-screen">
@@ -148,46 +148,54 @@
                 <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full w-full">
                     <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="text-center">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Edit Media Platform
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Edit Media
+                                Platform
                             </h3>
                             <div class="mt-2">
-                                <form action="{{ route('admin.media-platforms.update', $media->id) }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('admin.media-platforms.update', $media->id) }}"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-4">
-                                        <label for="edit_logo" class="block text-gray-700 text-sm font-bold mb-2">Current Logo:</label>
-                                        <img id="logo_preview" src="" alt="Current Logo" class="h-16 w-16 mb-2">
-                                        
+                                        <label for="edit_logo"
+                                            class="block text-gray-700 text-sm font-bold mb-2">Current
+                                            Logo:</label>
+                                        <img id="logo_preview" src="" alt="Current Logo"
+                                            class="h-16 w-16 mb-2">
+
                                     </div>
                                     <div class="mb-4">
-                                        <label for="edit_logo" class="block text-gray-700 text-sm font-bold mb-2">New Logo:</label>
-                                        <input type="file" name="logo" id="edit_logo" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                        <label for="edit_logo"
+                                            class="block text-gray-700 text-sm font-bold mb-2">New
+                                            Logo:</label>
+                                        <input type="file" name="logo" id="edit_logo"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                         @error('logo')
                                             <span class="text-red-500 text-xs">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <input type="hidden" id="edit_logo_url" name="edit_logo_url">   
+                                    <input type="hidden" id="edit_logo_url" name="edit_logo_url">
                                     <div class="mb-4">
                                         <label for="edit_name"
                                             class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
                                         <input type="text" name="name" id="edit_name" value=" "
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             placeholder="Enter name">
-                                            @error('name')
-                                                <span class="text-red-500 text-xs">{{ $message }}</span>
-                                            @enderror
+                                        @error('name')
+                                            <span class="text-red-500 text-xs">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mb-4">
                                         <label for="edit_mediaPlatform_code"
-                                            class="block text-gray-700 text-sm font-bold mb-2">Media Platform Code:</label>
-                                        <input type="number" name="mediaPlatform_code" id="edit_mediaPlatform_code"
-                                            value=" "
+                                            class="block text-gray-700 text-sm font-bold mb-2">Media Platform
+                                            Code:</label>
+                                        <input type="number" name="mediaPlatform_code"
+                                            id="edit_mediaPlatform_code" value=" "
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             placeholder="Enter code">
-                                            @error('mediaPlatform_code')
-                                                <span class="text-red-500 text-xs">{{ $message }}</span>
-                                            @enderror
+                                        @error('mediaPlatform_code')
+                                            <span class="text-red-500 text-xs">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mb-4">
                                         <label for="edit_type"
@@ -203,12 +211,16 @@
                                             <span class="text-red-500 text-xs">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    
-                                    
-                                    
+
+
+
                                     <div class="flex items-center justify-end">
                                         <button type="submit"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update</button>
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update
+                                        </button>
+                                        <button onclick="hideEditModal()"
+                                            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancel
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -218,6 +230,87 @@
             </div>
         </div>
 
+        <!---modal pour la visualisation --->
+        <div id="showMediaModal" class="hidden fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="fixed inset-0 bg-gray-500 opacity-75"></div>
+                <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full w-full">
+                    <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Media Platform
+                            </h3>
+                            <div class="mt-2">
+                                <div class="mb-4">
+                                    <label for="media_logo"
+                                        class="block text-gray-700 text-sm font-bold mb-2">Logo:</label>
+                                    <img id="media_preview" src="" alt="Media Logo" class="h-16 w-16 mb-2">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="media_name"
+                                        class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                                    <p id="media_name"></p>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="media_code" class="block text-gray-700 text-sm font-bold mb-2">Media
+                                        Platform Code:</label>
+                                    <p id="media_code"></p>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="media_type"
+                                        class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+                                    <p id="media_type"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end">
+                        <button onclick="hideMediaModal()"
+                            class="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Close</button>
+                    </div>
+                </div>
 
-    </div>
-@endsection
+                <script>
+                    function showCreateModal() {
+                        document.getElementById("createModal").classList.remove("hidden");
+                    }
+
+                    function hideCreateModal() {
+                        document.getElementById("createModal").classList.add("hidden");
+                    }
+
+                    function showEditModal(logoUrl, name, mediaPlatform_code, type) {
+
+                        document.getElementById("editModal").classList.remove("hidden");
+                        document.getElementById("logo_preview").src = logoUrl;
+                        document.getElementById("edit_logo_url").value = logoUrl;
+                        document.getElementById("edit_name").value = name;
+                        document.getElementById("edit_mediaPlatform_code").value = mediaPlatform_code;
+                        document.getElementById("edit_type").value = type;
+
+                    }
+
+                    function hideEditModal() {
+                        document.getElementById("editModal").classList.add("hidden");
+                    }
+
+                    function showMediaModal(logoUrl, name, mediaPlatform_code, type) {
+                        document.getElementById("showMediaModal").classList.remove("hidden");
+
+                        document.getElementById("media_preview").src = logoUrl;
+                        document.getElementById("media_name").innerText = name;
+                        document.getElementById("media_code").innerText = mediaPlatform_code;
+                        document.getElementById("media_type").innerText = type;
+                    }
+
+                    function hideMediaModal() {
+                        document.getElementById("showMediaModal").classList.add("hidden");
+                    }
+                </script>
+
+
+
+                
+
+
+            </div>
+        @endsection
