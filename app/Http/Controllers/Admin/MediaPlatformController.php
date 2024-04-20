@@ -13,7 +13,8 @@ class MediaPlatformController extends Controller
     public function index()
     {
         try {
-            $mediaPlatforms = MediaPlatform::paginate(6);
+            
+            $mediaPlatforms = MediaPlatform::paginate(9);
             return view('admin.media_platforms.index', compact('mediaPlatforms'));
         } catch (\Exception $e) {
             
@@ -49,9 +50,12 @@ class MediaPlatformController extends Controller
     }
 
 
-    public function update(MediaPlatformUpdateRequest $request, MediaPlatform $media)
+    public function update(MediaPlatformUpdateRequest $request, $id)
     {
+
         try {
+
+            $media = MediaPlatform::findOrFail($id);
             $media->update($request->validated());
             if ($request->hasFile('logo'))
             {
@@ -66,14 +70,15 @@ class MediaPlatformController extends Controller
     }
 
 
-    public function destroy(MediaPlatform $media)
+    public function destroy($id)
     {
-        try {
-            $media->delete();
-            return redirect()->route('admin.media-platforms.index')->with('success', 'Plateforme média supprimée avec succès.');
-        } catch (\Exception $e) {
-            
-            return redirect()->back()->with('error', 'Une erreur s\'est produite lors de la suppression de la plateforme média. Détails de l\'erreur : ' . $e->getMessage());
-        }
+      try {
+        $media = MediaPlatform::findOrFail($id);
+        $media->delete();
+
+        return redirect()->route('admin.media-platforms.index')->with('success', 'Plateforme média supprimée avec succès.');
+      } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Une erreur s\'est produite lors de la suppression de la plateforme média. Détails de l\'erreur : ' . $e->getMessage());
+       }
     }
 }
