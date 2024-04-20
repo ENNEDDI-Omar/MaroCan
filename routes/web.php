@@ -50,29 +50,16 @@ Route::middleware("auth")->group(function(){
 // // Route pour la déconnexion
  Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
- // // Route pour banner l'utilisateur
- Route::patch('users/{user}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
+ 
 
- //// Route pour les crud des utilisateurs
-Route::resource('users', UserController::class);
+ 
+
 
 // // Route pour la page d'accueil
 Route::resource('home', HomeController::class); 
  
 // // Route pour le dashboard de l'admin
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-// // Route pour les Articles
-Route::resource('articles', ArticleController::class);
-
-// //  Route pour les Tags
-Route::resource('tags', TagController::class);
-
-// //Route pour les Accreditations
-Route::resource('accreditations', AccreditationBadgeController::class);
-
-// // Route pour les MediaPlatforms
-Route::resource('media-platforms', MediaPlatformController::class);
 
 
 
@@ -82,6 +69,29 @@ Route::resource('media-platforms', MediaPlatformController::class);
 
 ///////////////ADMIN////////////////////
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    //// Route pour les crud des utilisateurs
+    Route::resource('users', UserController::class);
+
+    // // Route pour banner l'utilisateur
+    Route::patch('users/{user}/ban', [UserController::class, 'ban']);
+
+    Route::get('dashboard', [AdminDashboardController::class, 'index']);
+
+   // // Route pour les Articles
+   Route::resource('articles', ArticleController::class);
+
+   // //  Route pour les Tags
+   Route::resource('tags', TagController::class);
+
+  // //Route pour les Accreditations
+  Route::resource('accreditations', AccreditationBadgeController::class);
+
+  // // Route pour les MediaPlatforms
+  Route::resource('media-platforms', MediaPlatformController::class);
+
+
+});
 
 
 
