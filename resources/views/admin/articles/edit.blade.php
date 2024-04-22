@@ -23,6 +23,9 @@
             <div class="md:w-2/3">
                 <input class="form-input block w-full focus:bg-white" id="title" type="text" name="title" value="{{ $article->title }}">
             </div>
+            @error('title')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Content -->
@@ -35,6 +38,9 @@
             <div class="md:w-2/3">
                 <textarea class="form-textarea block w-full focus:bg-white" id="content" name="content" rows="8">{{ $article->content }}</textarea>
             </div>
+            @error('content')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Status -->
@@ -50,6 +56,9 @@
                     <option value="published" {{ $article->status === 'published' ? 'selected' : '' }}>Published</option>
                 </select>
             </div>
+            @error('status')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Tags -->
@@ -65,8 +74,10 @@
                         <option value="{{ $tag->id }}" {{ $article->tags->contains($tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
                     @endforeach
                 </select>
-                <p class="py-2 text-sm text-gray-600">Sélectionnez les tags existants ou ajoutez de nouveaux tags en les séparant par des virgules.</p>
             </div>
+            @error('tags')
+                 <p class="text-red-500 text-xs italic">{{ $message }}</p>  
+            @enderror
         </div>
 
         <!-- Image -->
@@ -79,6 +90,9 @@
             <div class="md:w-2/3">
                 <input class="form-input block w-full focus:bg-white" id="image" type="file" name="image">
             </div>
+            @error('image')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Save Button -->
@@ -88,6 +102,9 @@
                 <button class="shadow bg-yellow-700 hover:bg-yellow-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                     Save
                 </button>
+            </div>
+            <div class="md:w-1/3"> 
+                <a href="{{ route('admin.articles.index') }}" class="shadow bg-red-700 hover:bg-red-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Cancel</a>
             </div>
         </div>
     </form>
