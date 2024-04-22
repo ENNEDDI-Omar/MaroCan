@@ -13,8 +13,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->journalist;
-        $articles = $user->articles->pagination(4);
+        // $user = Auth::user()->journalist;
+        $articles = Article::with('journalist', 'tags')->paginate(6);
         return view('admin.articles.index', compact('articles'));
     }
 
@@ -26,11 +26,16 @@ class ArticleController extends Controller
     }
 
     public function store(ArticleStoreRequest $request)
-    {
+    {   
         try
-        {
+        {   $user = Auth::user();
+            
+            if (!$user || !$user->journalist) {
+                return redirect()->back()->with('error', 'L’utilisateur actuel n’est pas un journaliste ou n’est pas authentifié.');
+            }
+        
            $data = $request->validated();
-           $data['journalist_id'] = Auth::user()->journalist->id;
+           $data['journalist_id'] = $user->journalist->id;
 
             $article = Article::create($data);
 

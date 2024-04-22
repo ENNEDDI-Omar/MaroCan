@@ -91,13 +91,13 @@ class UserController extends Controller
         }
     }
 
-    public function ban(User $user)
-    {
-        try {
-            $user->update(['status' => 'banned']);
-            return redirect()->route('admin.users.index')->with('success', 'Utilisateur banni avec succès');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la tentative de bannissement de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
-        }
-    }
+    // public function ban(User $user)
+    // {
+    //     try {
+    //         $user->update(['status' => 'banned']);
+    //         return redirect()->route('admin.users.index')->with('success', 'Utilisateur banni avec succès');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->with('error', 'Une erreur est survenue lors de la tentative de bannissement de l\'utilisateur. Détails de l\'erreur : ' . $e->getMessage());
+    //     }
+    // }
 }
