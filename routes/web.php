@@ -69,14 +69,15 @@ Route::resource('home', HomeController::class);
 
 ///////////////ADMIN////////////////////
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //// Route pour les crud des utilisateurs
     Route::resource('users', UserController::class);
 
     // // Route pour banner l'utilisateur
-    Route::patch('users/{user}/ban', [UserController::class, 'ban']);
+    // Route::patch('users/{user}/ban', [UserController::class, 'ban']);
 
-    Route::get('dashboard', [AdminDashboardController::class, 'index']);
+    // // Route pour le dashboard de l'admin
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
    // // Route pour les Articles
    Route::resource('articles', ArticleController::class);
