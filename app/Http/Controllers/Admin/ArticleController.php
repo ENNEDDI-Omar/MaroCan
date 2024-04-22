@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleStoreRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -62,11 +63,13 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        return view('admin.articles.edit', compact('article'));
+        $tags = Tag::all();
+        return view('admin.articles.edit', compact('article', 'tags'));
     }
 
-    public function update(ArticleStoreRequest $request, Article $article)
-    {
+    public function update(ArticleUpdateRequest $request, Article $article)
+    { 
+        
         try {
             $data = $request->validated();
             $article->update($data);
