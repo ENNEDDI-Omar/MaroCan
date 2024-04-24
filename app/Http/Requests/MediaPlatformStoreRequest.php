@@ -24,7 +24,7 @@ class MediaPlatformStoreRequest extends FormRequest
         return [
             'logo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'], 
             'name' => ['required', 'string', 'max:255', 'unique:media_platforms,name'],
-            'mediaPlatform_code' => ['required', 'integer', 'digits:4', 'unique:media_platforms,mediaPlatform_code'],
+            'mediaPlatform_code' => ['required', 'integer', 'digits:4', 'unique:media_platforms,media_platform_code'],
             'type' => ['required', 'string', 'in:newspaper,radio,television,digital_media']
         ];
     }
