@@ -16,17 +16,21 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Author
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Title
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Tags
                     </th>
-                    
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Actions
                     </th>
                 </tr>
@@ -37,7 +41,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
+                                    <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1"
+                                        alt="">
                                 </div>
                                 <div>
                                     <div class="text-sm font-medium text-gray-900">
@@ -49,24 +54,31 @@
                                 </div>
                             </div>
                         </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $article->title }}</div>
+                            <a href="{{ route('admin.articles.show', $article) }}">
+                                <div class="text-sm text-gray-900">{{ $article->title }}</div>
+                            </a>
                         </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-block text-xs leading-5 font-semibold rounded-full {{ $article->status === 'published' ? 'bg-green-100 text-green-800' : ($article->status === 'draft' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-400 text-gray-800') }}">
+                            <span
+                                class="px-2 inline-block text-xs leading-5 font-semibold rounded-full {{ $article->status === 'published' ? 'bg-green-100 text-green-800' : ($article->status === 'draft' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-400 text-gray-800') }}">
                                 {{ ucfirst($article->status) }}
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $article->tags()->pluck('name')->join(', ') }}
                         </td>
-                        
+
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <a href='{{ route('admin.articles.edit', $article) }}' class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href='{{ route('admin.articles.edit', $article) }}'
+                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="ml-2 text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this article?')">Delete</button>
+                                <button type="submit" class="ml-2 text-red-600 hover:text-red-900"
+                                    onclick="return confirm('Are you sure you want to delete this article?')">Delete</button>
                             </form>
                         </td>
                     </tr>
