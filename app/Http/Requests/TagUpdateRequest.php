@@ -22,7 +22,7 @@ class TagUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=> ['sometimes', 'string', 'max:255', 'unique:tags,name,' . $this->tag->id]
+            'name'=> ['sometimes', 'string', 'max:255', 'unique:tags,name'],
         ];
     }
 }
