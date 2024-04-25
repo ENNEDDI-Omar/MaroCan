@@ -17,14 +17,14 @@ class Article extends Model implements HasMedia
     protected $fillable = [
         'title',
         'content',
-        'journalist_id',
+        'accreditation_id',
         'status',
         'published_at',
     ];
 
-    public function journalist(): BelongsTo
+    public function accreditationBadge(): BelongsTo
     {
-        return $this->belongsTo(Journalist::class);
+        return $this->belongsTo(AccreditationBadge::class, 'accreditation_id');
     }
 
     public function tags(): BelongsToMany
