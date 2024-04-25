@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media_platforms', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('media_platform_code')->unique();
-            $table->enum('type', ['newspaper', 'radio', 'television', 'digital_media'])->default('newspaper');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media_platforms');
+        Schema::dropIfExists('groups');
     }
 };

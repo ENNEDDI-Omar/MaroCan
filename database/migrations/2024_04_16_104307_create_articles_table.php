@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->text('content');
-            $table->unsignedBigInteger('journalist_id');
-            $table->foreign('journalist_id')->references('id')->on('journalists')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('accreditation_id');
+            $table->foreign('accreditation_id')->references('id')->on('accreditation_badges')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('status', ['draft', 'published', 'pending'])->default('pending');
             $table->dateTime('published_at')->nullable();
             $table->softDeletes();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_articles');
+        Schema::dropIfExists('articles');
     }
 };
