@@ -25,7 +25,7 @@ class ReservationStoreRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'football_match_id' => 'required|exists:football_matches,id',
             'zone' => 'required|in:gradins,tribunes,vip',
-            'number_of_tickets' => 'required|integer|min:1'
+            'number_of_tickets' => 'required|integer|min:1|max:5'
             
         ];
     }

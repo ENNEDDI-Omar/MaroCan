@@ -11,7 +11,7 @@ class ReservationUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class ReservationUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // j'update seulment le status de la reservation
         ];
     }
 }
