@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tag;
+use App\Models\Player;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TagTableSeeder extends Seeder
+class PlayerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Tag::factory()->count(5)->create();
+        Player::factory(80)->create();
     }
 }
