@@ -23,7 +23,7 @@ class ArticleUpdateRequest extends FormRequest
     {
         return [
             'title' => ['sometimes', 'max:255', 'string', 'unique:articles,title,' . $this->article->id],
-            'content' => ['sometimes', 'max65535', 'string'],
+            'content' => ['sometimes', 'max:65535', 'string'],
             'status' => ['sometimes', 'in:draft,published,pending'],
             'published_at' => ['nullable', 'date', 'date_format:Y-m-d'],
             'journalist_id' => ['sometimes', 'required', 'exists:journalists,id'],
