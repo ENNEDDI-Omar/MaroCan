@@ -23,11 +23,27 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             RoleTableSeeder::class,
             RoleUserTableSeeder::class,
-            JournalistTableSeeder::class,
             MediaPlatformTableSeeder::class,
             AccreditationBadgeTableSeeder::class,
             ArticleTableSeeder::class,
             TagTableSeeder::class,
+            ArticleTagTableSeeder::class,
+            GroupTableSeeder::class,
+            TeamTableSeeder::class,
+            ManagerTableSeeder::class,
+            PlayerTableSeeder::class,
+            FootballMatchTableSeeder::class,
+            Volunteering_offerTableSeeder::class,
+            ApplicationTableSeeder::class,
+            ReservationTableSeeder::class,
+            RefereeTableSeeder::class,
+            FootballMatchRefereeTableSeeder::class,
+            
+            
+            
+            
+            
+
         ]);
     }
 }

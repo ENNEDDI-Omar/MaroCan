@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\AccreditationBadge;
+use App\Models\FootballMatch;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AccreditationBadgeTableSeeder extends Seeder
+class FootballMatchTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-         AccreditationBadge::factory()->count(6)->create();
-         
-
+        FootballMatch::factory(6)->create();
     }
 }
