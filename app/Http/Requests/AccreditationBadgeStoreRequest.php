@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidCodeForMedia;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AccreditationBadgeStoreRequest extends FormRequest
@@ -22,7 +23,10 @@ class AccreditationBadgeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['exists:users,id'],
+            'mediaPlatform_id' => ['exists:media_platforms,id'],
+            'license_number' => ['required','string', 'unique:accreditation_badges,license_number'],
+            'media_platform_code' => ['required', 'string', new ValidCodeForMedia()],
         ];
     }
 }
