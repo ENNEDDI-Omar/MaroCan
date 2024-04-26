@@ -22,10 +22,10 @@ class AccreditationBadgeFactory extends Factory
              
 
             return [
-                'badge_number' => $this->faker->unique()->numberBetween(0, 100),
-                'expiration_date' => $this->faker->dateTimeBetween('now', '+20 days'),
-                'journalist_id' => function () {
-                    return \App\Models\Journalist::factory()->create()->id;
+                
+                'license_number' => $this->faker->unique()->numerify('LN###'),
+                'user_id' => function () {
+                    return \App\Models\User::factory()->create()->id;
                 },
                 'mediaPlatform_id' => function () {
                     return \App\Models\MediaPlatform::factory()->create()->id;

@@ -19,6 +19,7 @@ class ApplicationFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),  
             'volunteering_offer_id' => \App\Models\VolunteeringOffer::factory(),
+            'motivation' => $this->faker->text('500'),
             'age' => $this->faker->numberBetween(18, 35),
             'status' => $this->faker->randomElement(['pending', 'accepted', 'rejected']),
         ];
