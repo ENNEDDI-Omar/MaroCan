@@ -17,13 +17,13 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'journalist_id' => function () {
-                return \App\Models\Journalist::factory()->create()->id;
+            'accreditation_id' => function () {
+                return \App\Models\AccreditationBadge::factory()->create()->id;
             },
             'title' => $this->faker->sentence,
-            'content' => $this->faker->paragraph,
-            'status' => $this->faker->randomElement(['draft', 'published']),
-            'published_at' => $this->faker->dateTime,
+            'content' => $this->faker->paragraphs(3, true),
+            'status' => $this->faker->randomElement(['draft', 'published', 'pending']),
+            'published_at' => $this->faker->dateTimeBetween('-4 days', 'now'),
             
         ];
     }

@@ -19,7 +19,7 @@ class MediaPlatformFactory extends Factory
         return 
         [
             'name' => $this->faker->company,
-            'mediaPlatform_code' => $this->faker->randomNumber(4),
+            'media_platform_code' => $this->faker->unique()->numerify('MP####'),
             'type' => $this->faker->randomElement(['newspaper', 'radio', 'television', 'digital_media']),
         ];
     }
