@@ -15,7 +15,7 @@ class ArticleController extends Controller
     public function index()
     {
         // $user = Auth::user()->journalist;
-        $articles = Article::with('journalist', 'tags')->paginate(6);
+        $articles = Article::with('accreditationBadge', 'tags')->paginate(6);
         return view('admin.articles.index', compact('articles'));
     }
 
