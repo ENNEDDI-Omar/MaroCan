@@ -22,12 +22,12 @@ class ArticleStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'],
             'title' => ['required', 'string', 'max:255', 'unique:articles,title'],
             'content' => ['required', 'string', 'max:65535'],
             'status' => ['in:draft,published,pending'],
             'published_at' => ['nullable', 'date_format:Y-m-d'],
-            'journalist_id' => ['exists:journalists,id'],
+            'accreditation_id' => ['exists:accreditation_badges, id'],
             'tags' => 'required|array',
             'tags.*' => 'exists:tags,id'
         ];
