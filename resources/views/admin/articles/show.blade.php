@@ -23,11 +23,11 @@
                 Pellentesque a consectetur velit, ac molestie ipsum. Donec sodales, massa et auctor.
             </h2>
             <div class="flex mt-3">
-                @if ($article->journalist->user)
-                    <img src="{{ $article->journalist->user->getFirstMediaUrl('users') ?? 'profil image not available' }}"
+                @if ($article->accreditationBadge->user)
+                    <img src="{{ $article->accreditationBadge->user->getFirstMediaUrl('users') ?? 'profil image not available' }}"
                         class="h-10 w-10 rounded-full mr-2 object-cover" />
                     <div>
-                        <p class="font-semibold text-gray-200 text-sm"> {{ $article->journalist->user->name ?? 'Unknown' }}
+                        <p class="font-semibold text-gray-200 text-sm"> {{ $article->accreditationBadge->user->name ?? 'Unknown' }}
                         </p>
                         <p class="font-semibold text-gray-400 text-xs"> 14 Aug </p>
                     </div>

@@ -46,10 +46,10 @@
                                 </div>
                                 <div>
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $article->journalist->user->name ?? 'Name not available' }}
+                                        {{ $article->accreditationBadge->user->name ?? 'Name not available' }}
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        {{ $article->journalist->user->email ?? 'Email not available' }}
+                                        {{ $article->accreditationBadge->user->email ?? 'Email not available' }}
                                     </div>
                                 </div>
                             </div>
