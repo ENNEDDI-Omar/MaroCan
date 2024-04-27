@@ -35,7 +35,7 @@ class RegisterController extends Controller
         try 
         {
             $createdUser = User::create(array_merge($request->validated(), ['password' => bcrypt($request->input('password'))]));
-            $userRole = $createdUser->assignRole(['admin']);
+            $userRole = $createdUser->assignRole(['user']);
              
              if(!$userRole)
              {
