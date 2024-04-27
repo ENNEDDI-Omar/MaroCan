@@ -22,6 +22,10 @@ class Article extends Model implements HasMedia
         'published_at',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime', 
+    ];
+
     public function accreditationBadge(): BelongsTo
     {
         return $this->belongsTo(AccreditationBadge::class, 'accreditation_id');
