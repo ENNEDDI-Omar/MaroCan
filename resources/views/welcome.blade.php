@@ -184,9 +184,10 @@
             <!-- nav - end -->
 
             <!-- buttons - start -->
-            <a href="#"
-                class="hidden rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block">Contact
-                Sales</a>
+            <a href="{{ route('user.accreditations.create') }}" class="rounded-lg bg-blue-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-700 focus-visible:ring active:bg-blue-800 md:text-base lg:inline-block">
+                Secure Your Press Badge & Cover the Competition!
+            </a>
+            
 
             <button type="button"
                 class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
