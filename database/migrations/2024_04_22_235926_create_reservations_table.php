@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('football_match_id')->references('id')->on('football_matches')->onDelete('cascade');
 
-            $table->unique(['user_id', 'football_match_id'], 'user_match_unique');
+            $table->unique(['user_id', 'football_match_id'], 'user_match_unique')->comment('A user can reserve only once for a match');
         });
     }
 

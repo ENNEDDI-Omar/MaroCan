@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('accreditation_id');
             $table->foreign('accreditation_id')->references('id')->on('accreditation_badges')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('status', ['draft', 'published', 'pending'])->default('pending');
-            $table->dateTime('published_at')->nullable();
+            $table->dateTime('published_at')->nullable()->index();
             $table->softDeletes();
             $table->timestamps();
         });
