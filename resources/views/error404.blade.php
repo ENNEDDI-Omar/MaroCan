@@ -14,7 +14,7 @@
           <h1 class="text-[32px] font-bold leading-none md:text-[40px] mb-4">Oh no! Error 404</h1>
           <p class="text-lg opacity-80">Something went wrong, this page is broken.</p>
           <div class="flex justify-center mt-6">
-            <a href="{{route('home.index')}}" class="px-6 py-2.5 font-medium bg-blue-600 hover:bg-opacity-90 rounded text-white duration-300">
+            <a href="{{route('user.home.index')}}" class="px-6 py-2.5 font-medium bg-blue-600 hover:bg-opacity-90 rounded text-white duration-300">
               Go Home
             </a>
             <button

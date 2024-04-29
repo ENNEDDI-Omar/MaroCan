@@ -22,10 +22,7 @@
         <div class="w-full py-6 z-20">
             <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-white md:text-3xl"
                 aria-label="logo">
-                <svg width="95" height="94" viewBox="0 0 95 94" class="h-auto w-6 text-indigo-500"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M96 0V47L48 94H0V47L48 0H96Z" />
-                </svg>
+                <img src="{{ asset('images/Logo.png') }}" alt="logo" class="w-10 h-10 md:w-12 md:h-12" />
                 MaroCan.25
             </a>
             <!-- Social icons -->
@@ -34,8 +31,7 @@
                 class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" enctype="multipart/form-data">
                 @csrf
                 <div class="pb-2 pt-4">
-                    <label for="name"
-                        class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{ __('Name:') }}</label>
+                    
                     <input id="name"
                         class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         type="text" name="name" value="{{ old('name') }}" required autofocus
@@ -45,7 +41,7 @@
                     @enderror
                 </div>
                 <div class="pb-2 pt-4">
-                    <label for="email" class="text-left text-white">{{ __('Email:') }}</label>
+                    
                     <input id="email"
                         class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         type="email" name="email" value="{{ old('email') }}" autocomplete="email"
@@ -55,29 +51,28 @@
                     @enderror
                 </div>
                 <div class="pb-2 pt-4">
-                    <label for="password" class="text-left text-white">{{ __('Password:') }}</label>
+                    
                     <input id="password"
                         class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         type="password" name="password" required autocomplete="new-password"
-                        placeholder="********" />
+                        placeholder="password********" />
                     @error('password')
                         <p class="mt-2 text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                {{-- <div class="pb-2 pt-4">
-                    <label for="password_confirmation"
-                        class="text-left text-white">{{ __('Confirm Password:') }}</label>
+                 <div class="pb-2 pt-4">
+                    
                     <input id="password_confirmation"
                         class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         type="password" name="password_confirmation" required 
-                        placeholder="********" />
+                        placeholder="password_confirmation" />
                     @error('password_confirmation')
                         <p class="mt-2 text-red-500">{{ $message }}</p>
                     @enderror
-                </div> --}}
+                </div> 
 
                 <div class="pb-2 pt-4">
-                    <label for="phone" class="text-left text-white">{{ __('Phone:') }}</label>
+                    
                     <input id="phone"
                         class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         type="text" name="phone" value="{{ old('phone') }}" required autocomplete="phone"
@@ -86,7 +81,7 @@
                         <p class="mt-2 text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                {{-- <div>
+                 <div>
                     <label for="dropzone-file" class="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -94,17 +89,17 @@
  
                         <h2 class="mx-3 text-gray-400">Profile Photo</h2>
  
-                        <input id="dropzone-file" type="file" name="Profil" class="hidden" />
+                        <input id="dropzone-file" type="file" name="profil" class="hidden" />
                     </label>
-                </div> --}}
-                <div class="pb-2 pt-4">
+                </div> 
+                <div class="pb-2 pt-4 translate-x-40">
                    <div>
                        <a href="{{ route('login') }}"
                            class="underline text-sm text-white hover:text-indigo-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ __('Already registered?') }}</a>
                    </div>
                    <div class="px-4 pb-2 pt-4">
                        <button
-                           class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">{{ __('Register') }}</button>
+                           class="uppercase block w-full p-4 text-lg rounded-full bg-green-600 hover:bg-indigo-600 focus:outline-none">{{ __('Register') }}</button>
                    </div>
                 </div>
                 
