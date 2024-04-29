@@ -37,12 +37,12 @@ class ArticleController extends Controller
     {
         $search = $request->input('searchKey');
 
-        $articles = Article::query()
+        $article = Article::query()
             ->where('title', 'like', "%{$search}%")
             ->orWhere('content', 'like', "%{$search}%")
             ->paginate(2);
 
-        return view('user.articles.index', compact('articles'));
+        return view('user.articles.index', compact('article'));
     }
 
 
