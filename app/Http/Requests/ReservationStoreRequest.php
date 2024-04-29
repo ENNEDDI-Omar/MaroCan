@@ -22,10 +22,11 @@ class ReservationStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'football_match_id' => 'required|exists:football_matches,id',
-            'zone' => 'required|in:gradins,tribunes,vip',
-            'number_of_tickets' => 'required|integer|min:1|max:5'
+            // 'user_id' => 'exists:users,id',
+            'football_match_id' => 'exists:football_matches,id',
+            'zone' => 'in:gradins,tribunes,vip',
+            'number_of_tickets' => 'required|integer|min:1|max:5',
+            //'total_price' => 'integer'
             
         ];
     }

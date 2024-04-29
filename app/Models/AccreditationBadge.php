@@ -32,6 +32,6 @@ class AccreditationBadge extends Model
 
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Article::class,'accreditation_id');
     }
 }
