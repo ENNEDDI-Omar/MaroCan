@@ -193,7 +193,7 @@
         <div class="flex flex-col flex-1 w-full">
             <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
                 <div
-                    class="container flex items-center justify-between h-full px-6 mx-auto text-red-500 dark:text-green-600">
+                    class="container flex items-center justify-between h-full px-6 mx-auto text-green-600 dark:text-red-600">
                     <!-- Mobile hamburger -->
                     <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
                         @click="toggleSideMenu" aria-label="Menu">
@@ -206,16 +206,14 @@
                     <!-- Search input -->
                     <div class="lg:flex sm:hidden justify-center flex-1 lg:mr-32">
                         <a class="flex title-font   font-medium items-center text-gray-900 mb-4 md:mb-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
+                            <img src="{{ asset('images/Logo.png') }}" alt="logo" class="w-10 h-10 md:w-12 md:h-12" />
                             <span class="ml-3 text-xl">MaroCan.25</span>
                           </a>
                           <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                            <a href="{{route('home.index')}}" class="mr-5 hover:text-gray-900">Home</a>
-                            <a href="{{route('user.matchs.index')}}" class="mr-5 hover:text-gray-900">Matchs</a>
-                            <a href="{{route('user.articles.index')}}" class="mr-5 hover:text-gray-900">Articles</a>
-                            <a href="{{route('user.volunteering-offers.index')}}" class="mr-5 hover:text-gray-900">Volunteer Offers</a>
+                            <a href="{{route('user.home.index')}}" class="mr-5 hover:text-red-600">Home</a>
+                            <a href="{{route('user.matchs.index')}}" class="mr-5 hover:text-red-600">Matchs</a>
+                            <a href="{{route('user.articles.index')}}" class="mr-5 hover:text-red-600">Articles</a>
+                            <a href="{{route('user.volunteering-offers.index')}}" class="mr-5 hover:text-red-600">Volunteer Offers</a>
                             
                           </nav>
                     </div>
