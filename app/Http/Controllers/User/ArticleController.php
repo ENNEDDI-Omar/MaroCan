@@ -33,6 +33,18 @@ class ArticleController extends Controller
         return view('user.articles.index', compact('articles', 'latestArticle'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('searchKey');
+
+        $articles = Article::query()
+            ->where('title', 'like', "%{$search}%")
+            ->orWhere('content', 'like', "%{$search}%")
+            ->paginate(2);
+
+        return view('user.articles.index', compact('articles'));
+    }
+
 
 
 

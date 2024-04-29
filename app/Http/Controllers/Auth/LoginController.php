@@ -29,7 +29,7 @@ class LoginController extends Controller
                 if ($user->hasRole(['admin'])) {
                     return redirect()->route('admin.dashboard')->with('success', 'Vous êtes connecté comme Admin avec succès.');
                 }else if ($user->hasRole(['user'])) {
-                    return redirect()->route('home.index')->with('success', 'Vous êtes connecté comme Utilisateur avec succès.');
+                    return redirect()->route('user.home.index')->with('success', 'Vous êtes connecté comme Utilisateur avec succès.');
                 }
     
                 return redirect()->intended('home.index')->with('success', 'Vous êtes connecté avec succès mais sans aucun role.');
