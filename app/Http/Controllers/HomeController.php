@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\FootballMatch;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +13,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $publishedArticles = Article::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+         $matches = FootballMatch::where('status', 'available')
+            ->orderBy('match_date', 'asc')
+            ->take(4)
+            ->get();
+        return view('home', compact('publishedArticles', 'matches'));
     }
 
     /**
