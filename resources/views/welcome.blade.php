@@ -162,32 +162,30 @@
             <!-- logo - start -->
             <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
                 aria-label="logo">
-                <svg width="95" height="94" viewBox="0 0 95 94" class="h-auto w-6 text-indigo-500"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M96 0V47L48 94H0V47L48 0H96Z" />
-                </svg>
+                <img src="{{ asset('images/Logo.png') }}" alt="logo" class="w-10 h-10 md:w-12 md:h-12" />
 
-                MaroCan
+                MaroCan.25
             </a>
             <!-- logo - end -->
 
             <!-- nav - start -->
             <nav class="hidden gap-12 lg:flex">
-                <a href="#" class="text-lg font-semibold text-indigo-500">Home</a>
+                <a href="#" class="text-lg font-semibold text-red-600">Home</a>
                 <a href="#"
-                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Features</a>
+                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-red-600 active:text-indigo-700">Features</a>
                 <a href="#"
-                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Pricing</a>
+                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-red-600 active:text-indigo-700">Pricing</a>
                 <a href="#"
-                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</a>
+                    class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-red-600 active:text-indigo-700">About</a>
             </nav>
             <!-- nav - end -->
 
             <!-- buttons - start -->
-            <a href="{{ route('user.accreditations.create') }}" class="rounded-lg bg-blue-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-700 focus-visible:ring active:bg-blue-800 md:text-base lg:inline-block">
+            <a href="{{ route('user.accreditations.create') }}"
+                class="rounded-lg bg-green-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-700 focus-visible:ring active:bg-blue-800 md:text-base lg:inline-block">
                 Secure Your Press Badge & Cover the Competition!
             </a>
-            
+
 
             <button type="button"
                 class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
@@ -205,7 +203,7 @@
         <section
             class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-16 shadow-lg md:py-20 xl:py-48">
             <!-- image - start -->
-            <img src="{{ asset('images/home2.jpg') }}" loading="lazy" alt="Photo by Fakurian Design"
+            <img src="{{ asset('images/team13.jpg') }}" loading="lazy" alt="Photo by Fakurian Design"
                 class="absolute inset-0 h-full w-full object-cover object-center" />
             <!-- image - end -->
 
@@ -217,20 +215,20 @@
             <div class="relative flex flex-col items-center p-4 sm:max-w-xl">
                 <p class="mb-4 text-center text-lg text-indigo-200 sm:text-xl md:mb-8">Very proud to introduce</p>
                 <h1 class="mb-8 text-center text-4xl font-bold text-white sm:text-5xl md:mb-12 md:text-6xl">
-                    Revolutionary way to Reserve an Event</h1>
+                    Enjoy the African Competition</h1>
                 @if (Route::has('login'))
                     <div class="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
                         @auth
 
 
                             <a href="{{ url('/home') }}"
-                                class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">dashboard</a>
+                                class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-red-600 focus-visible:ring active:text-gray-700 md:text-base">dashboard</a>
                         @else
                             <a href="{{ route('login.form') }}"
-                                class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">Login</a>
+                                class="inline-block rounded-lg bg-red-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-green-600 focus-visible:ring active:text-gray-700 md:text-base">Login</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register.form') }}"
-                                    class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Start
+                                    class="inline-block rounded-lg bg-green-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-red-600 focus-visible:ring active:bg-indigo-700 md:text-base">Start
                                     now</a>
                             @endif
 
@@ -247,69 +245,69 @@
 <!-- gallery - start -->
 <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">Events</h2>
+        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">Services</h2>
 
         <div class="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
             <!-- image - start -->
-            <a href="{{ route('register') }}"
+            <a href="{{ route('register.form') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{ asset('media/e2.jpg') }}" loading="lazy" alt="Photo by Minh Pham"
+                <img src="{{ asset('images/match2.jpg') }}" loading="lazy" alt="Photo by Minh Pham"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
                     class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                 </div>
 
-                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Festivales</span>
+                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Matchs</span>
             </a>
             <!-- image - end -->
 
             <!-- image - start -->
-            <a href="{{ route('register') }}"
+            <a href="{{ route('register.form') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{ asset('media/spe3.jpg') }}" loading="lazy" alt="Photo by Magicle"
+                <img src="{{ asset('images/article1.jpg') }}" loading="lazy" alt="Photo by Magicle"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
                     class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                 </div>
 
-                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Soocer</span>
+                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Articles</span>
             </a>
             <!-- image - end -->
 
             <!-- image - start -->
-            <a href="{{ route('register') }}"
+            <a href="{{ route('register.form') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{ asset('media/e1.jpg') }}" loading="lazy" alt="Photo by Martin Sanchez"
+                <img src="{{ asset('images/staduim1.jpg') }}" loading="lazy" alt="Photo by Martin Sanchez"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
                     class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                 </div>
 
-                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Shows</span>
+                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Staduims</span>
             </a>
             <!-- image - end -->
 
             <!-- image - start -->
-            <a href="{{ route('register') }}"
+            <a href="{{ route('register.form') }}"
                 class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src="{{ asset('media/geo1.jpg') }}" loading="lazy" alt="Photo by Lorenzo Herrera"
+                <img src="{{ asset('images/volunteer1.jpg') }}" loading="lazy" alt="Photo by Lorenzo Herrera"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                 <div
                     class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                 </div>
 
-                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Olympics</span>
+                <span class="relative mb-3 ml-4 inline-block text-sm text-white md:ml-5 md:text-lg">Volunteer
+                    Offers</span>
             </a>
             <!-- image - end -->
         </div>
 
         <div class="flex items-start justify-between gap-8 sm:items-center">
-            <p class="max-w-screen-sm text-sm text-gray-500 lg:text-base">This is a section of some simple filler text,
-                also known as placeholder text. It shares some characteristics of a real written text.</p>
+
 
             <a href="#"
                 class="inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">More</a>
@@ -749,13 +747,10 @@
                         <a href="/"
                             class="inline-flex items-center gap-2 text-xl font-bold text-black md:text-2xl"
                             aria-label="logo">
-                            <svg width="95" height="94" viewBox="0 0 95 94"
-                                class="h-auto w-5 text-indigo-500" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M96 0V47L48 94H0V47L48 0H96Z" />
-                            </svg>
+                            <img src="{{ asset('images/Logo.png') }}" alt="logo"
+                                class="w-10 h-10 md:w-12 md:h-12" />
 
-                            EVENTO
+                            MaroCan.25
                         </a>
                     </div>
                     <!-- logo - end -->

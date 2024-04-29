@@ -4,7 +4,7 @@
         <div class="mt-4">
             <div
                 class="flex items-center space-x-2 overflow-x-auto sm:justify-center flex-nowrap bg-white text-gray-800 px-4 py-2">
-                <a href="{{route('home.index')}}"
+                <a href="{{route('user.home.index')}}"
                     class="flex items-center px-5 py-2 border-b-4 border-transparent hover:border-green-700 text-gray-600 hover:text-gray-800 transition duration-300 ease-in-out">
                     Home
                 </a>
