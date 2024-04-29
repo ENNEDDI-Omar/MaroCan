@@ -14,6 +14,7 @@ class Application extends Model
     protected $fillable = [
         'user_id',
         'volunteering_offer_id',
+        'motivation',
         'age',
         'status'
         
@@ -22,12 +23,12 @@ class Application extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function volunteeringOffer(): BelongsTo
     {
-        return $this->belongsTo(VolunteeringOffer::class);
+        return $this->belongsTo(VolunteeringOffer::class, 'volunteering_offer_id');
     }
 }
 
