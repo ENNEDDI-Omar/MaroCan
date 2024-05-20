@@ -35,14 +35,20 @@ class ArticleController extends Controller
 
     public function search(Request $request)
     {
+
+      //  return "hello";
+
         $search = $request->input('searchKey');
+        $latestArticle=[];
+        $articles = Article::query()
+            ->where('title', 'like', "%".$search."%")
+            ->orWhere('content', 'like', "%".$search."%")
+            ->paginate(1);
 
-        $article = Article::query()
-            ->where('title', 'like', "%{$search}%")
-            ->orWhere('content', 'like', "%{$search}%")
-            ->paginate(2);
 
-        return view('user.articles.index', compact('article'));
+     
+
+        return view('user.articles.index', compact('articles','latestArticle'));
     }
 
 
