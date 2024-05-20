@@ -15,7 +15,7 @@
             
         </div>
         <div class="text-end translate-x-40">
-            <form action="{{route('user.')}}" method="GET"
+            <form action="{{route('user.articles.search')}}" method="GET"
                 class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
                 <div class=" relative ">
                     <input name="searchKey" type="text" placeholder="Search..." 
@@ -32,7 +32,7 @@
         
         
         <div class="mb-4 lg:mb-0 p-4 lg:p-0 w-full md:w-4/7 relative rounded block flex flex-col">
-            <img src="{{ $latestArticle->getFirstMediaUrl('articles', 'thumb') ?: 'https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' }}"
+            {{-- <img src="{{ $latestArticle?->getFirstMediaUrl('articles', 'thumb') ?: 'https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' }}"
                 class="rounded-md object-cover w-full h-64">
             <span class="text-green-700 text-sm hidden md:block mt-4"> {{ $latestArticle->tags->pluck('name')->join(', ') }}
             </span>
@@ -45,7 +45,7 @@
             <a href="{{ route('user.articles.show', $latestArticle->id) }}"
                 class="mt-auto self-end px-6 py-3 rounded-md bg-green-700 text-gray-100">
                 Read more
-            </a>
+            </a> --}}
         </div>
 
 
