@@ -108,6 +108,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 // Route pour l'utilisateur
 
 Route::prefix('user')->name('user.')->middleware('user')->group(function () {
+Route::get('articles/search', [UserArticleController::class, 'search'])->name('articles.search');
  //route vers le home 
  Route::resource('home', HomeController::class);
  //route vers la page des offres de bénévolat
@@ -119,7 +120,6 @@ Route::prefix('user')->name('user.')->middleware('user')->group(function () {
  //route vers la page des articles
     Route::resource('articles', UserArticleController::class)->only(['index', 'show']);
  // route pour search des articles
-     Route::get('articles/search', [UserArticleController::class, 'search']);
  // route pour le formilaire du badge d'accreditation
     Route::resource('accreditations', AccreditationController::class)->only(['create', 'store']);
    
